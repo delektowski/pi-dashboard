@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { ConfigProvider } from "antd";
-import plPL from 'antd/es/locale/pl_PL'
+import plPL from "antd/es/locale/pl_PL";
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_URL,

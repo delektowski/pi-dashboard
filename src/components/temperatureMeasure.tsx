@@ -3,10 +3,14 @@ import { Area } from "@ant-design/plots";
 import { Measurement } from "../models/measurement.model";
 import dayjs from "dayjs";
 
-const TemperatureMeasure = ({ allMeasurements }: { allMeasurements: Measurement[] }) => {
+const TemperatureMeasure = ({
+  rangeMeasurements,
+}: {
+  rangeMeasurements: Measurement[];
+}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    const data = allMeasurements.map((measurement: Measurement, index) => {
+    const data = rangeMeasurements.map((measurement: Measurement) => {
       const formatDate = dayjs(measurement.measurementDate).format(
         "DD.MM.YY  HH:MM"
       );
@@ -14,7 +18,7 @@ const TemperatureMeasure = ({ allMeasurements }: { allMeasurements: Measurement[
     });
     // @ts-ignore
     setData(data);
-  }, [allMeasurements]);
+  }, [rangeMeasurements]);
   const config = {
     data,
     height: 400,
@@ -31,11 +35,9 @@ const TemperatureMeasure = ({ allMeasurements }: { allMeasurements: Measurement[
     areaStyle: () => {
       return {
         fill: "l(270) 0:#ffffff 0.5:#EC3953 1:#E60526",
-
       };
     },
-    color: '#ffa3b0',
-
+    color: "#ffa3b0",
   };
   return <Area {...config} />;
 };
