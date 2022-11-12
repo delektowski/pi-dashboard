@@ -1,7 +1,7 @@
 import React from "react";
-import { Col, Divider, Row } from "antd";
+import { Col, Row } from "antd";
 import "./App.css";
-import AllMeasurements from "./components/alllMeasurements";
+import Measurements from "./components/measurements/measurements";
 import RangeDate from "./components/rangeDate";
 import { DateRangeContext } from "./context/dateRangeContext";
 import useCurrentWeekRange from "./hooks/useCurrentWeekRange";
@@ -24,10 +24,10 @@ const App = () => {
               <RangeDate />
             </Col>
           </Row>
-          <Divider orientation="center">Temperature</Divider>
+
           <Row>
             <Col span={24}>
-              <AllMeasurements />
+              <Measurements />
             </Col>
           </Row>
         </DateRangeContext.Provider>

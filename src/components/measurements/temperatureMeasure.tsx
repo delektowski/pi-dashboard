@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Area } from "@ant-design/plots";
-import { Measurement } from "../models/measurement.model";
+import { Measurement } from "../../models/measurement.model";
 import dayjs from "dayjs";
+import { Divider } from "antd";
 
 const TemperatureMeasure = ({
   rangeMeasurements,
 }: {
   rangeMeasurements: Measurement[];
 }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Measurement[]>([]);
   useEffect(() => {
-    const data = rangeMeasurements.map((measurement: Measurement) => {
-      const formatDate = dayjs(measurement.measurementDate).format(
-        "DD.MM.YY  HH:MM"
-      );
-      return { date: formatDate, temperature: measurement.temperature };
-    });
-    // @ts-ignore
+    const data: Measurement[] = rangeMeasurements.map(
+      (measurement: Measurement) => {
+        const formatDate = dayjs(measurement.measurementDate).format(
+          "DD.MM.YY  HH:MM"
+        );
+        return { date: formatDate, temperature: measurement.temperature };
+      }
+    );
+
     setData(data);
   }, [rangeMeasurements]);
   const config = {
@@ -39,6 +42,11 @@ const TemperatureMeasure = ({
     },
     color: "#ffa3b0",
   };
-  return <Area {...config} />;
+  return (
+    <>
+      <Divider orientation="center">Temperature</Divider>
+      <Area {...config} />
+    </>
+  );
 };
 export default TemperatureMeasure;
