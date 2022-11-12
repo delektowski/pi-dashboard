@@ -5,30 +5,33 @@ import DatePicker from "./datePickerDayJs";
 import { DateRangeContext } from "../context/dateRangeContext";
 import dayjs from "dayjs";
 
-const onChange: any["onChange"] = (date: any, dateString: any) => {
-  console.log(date, dateString);
-};
-
-const RangeDate: React.FC = () => {
+const RangeDate = () => {
+  const dateTemplate = "YYYY-MM-DD";
   const dateRange = useContext(DateRangeContext);
+  const onChange: any["onChange"] = (isStart: boolean, dateString: any) => {
+    dateRange.handleSetStart(
+      isStart,
+      dayjs(dateString.$d).format(dateTemplate)
+    );
+  };
   return (
     <>
       <Row justify="center">
         <Col span={6}>
           <Space direction="vertical" size={2}>
             <DatePicker
-              onChange={onChange}
+              value={dayjs(dateRange.start)}
+              onChange={(e) => onChange(true, e)}
               placeholder={"From"}
-              defaultValue={dayjs(dateRange.start)}
             />
           </Space>
         </Col>
         <Col span={6}>
           <Space direction="vertical" size={2}>
             <DatePicker
-              onChange={onChange}
+              value={dayjs(dateRange.end)}
+              onChange={(e) => onChange(false, e)}
               placeholder={"To"}
-              defaultValue={dayjs(dateRange.end)}
             />
           </Space>
         </Col>
