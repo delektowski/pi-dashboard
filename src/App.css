@@ -1,6 +1,8 @@
 @import "~antd/dist/antd.css";
 
-.container {
-  padding-block: 0.8rem;
-  padding-inline: 0.8rem;
+@media (min-width: 480px) {
+    .container {
+        padding-block: 0.8rem;
+        padding-inline: 0.8rem;
+    }
 }
