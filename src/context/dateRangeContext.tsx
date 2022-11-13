@@ -3,7 +3,7 @@ import React from "react";
 interface DateRangeInterface {
   start: string | null;
   end: string | null;
-  handleSetStart: ((isStart: boolean, date: string) => void)
+  handleSetRange: ((isStart: boolean, date: string) => void)
 
 }
 

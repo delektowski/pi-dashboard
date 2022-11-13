@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GET_MEASUREMENTS_RANGE } from "../../GQLQueries/get-measurements";
+import { GET_MEASUREMENTS_RANGE } from "../../helpers/gql-measurements";
 import { Measurement } from "../../models/measurement.model";
 import { useContext } from "react";
 import { DateRangeContext } from "../../context/dateRangeContext";

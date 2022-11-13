@@ -2,12 +2,12 @@ import React from "react";
 import { Col, Row } from "antd";
 import "./App.css";
 import Measurements from "./components/measurements/measurements";
-import RangeDate from "./components/rangeDate";
+import RangeDate from "./components/rangeDate/rangeDate";
 import { DateRangeContext } from "./context/dateRangeContext";
-import useCurrentWeekRange from "./hooks/useCurrentWeekRange";
+import useDateRange from "./hooks/useDateRange";
 
 const App = () => {
-  const { start, end, handleSetStart } = useCurrentWeekRange();
+  const { start, end, handleSetRange } = useDateRange();
 
   return (
     <div className="container">
@@ -16,7 +16,7 @@ const App = () => {
           value={{
             start,
             end,
-            handleSetStart,
+            handleSetRange,
           }}
         >
           <Row justify="center">

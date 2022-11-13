@@ -1,15 +1,15 @@
 // import type {DatePickerProps} from 'antd';
 import { Col, Row, Space } from "antd";
 import React, { useContext } from "react";
-import DatePicker from "./datePickerDayJs";
-import { DateRangeContext } from "../context/dateRangeContext";
+import DatePicker from "../../helpers/datePickerDayJs";
+import { DateRangeContext } from "../../context/dateRangeContext";
 import dayjs from "dayjs";
 
 const RangeDate = () => {
   const dateTemplate = "YYYY-MM-DD";
   const dateRange = useContext(DateRangeContext);
   const onChange: any["onChange"] = (isStart: boolean, dateString: any) => {
-    dateRange.handleSetStart(
+    dateRange.handleSetRange(
       isStart,
       dayjs(dateString.$d).format(dateTemplate)
     );

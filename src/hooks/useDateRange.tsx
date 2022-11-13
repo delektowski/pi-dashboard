@@ -4,13 +4,13 @@ import dayjs from "dayjs";
 export interface CurrentWeekRange {
   start: null | string;
   end: null | string;
-  handleSetStart: (isStart: boolean, date: string) => void;
+  handleSetRange: (isStart: boolean, date: string) => void;
 }
-export default function useCurrentWeekRange(): CurrentWeekRange {
+export default function useDateRange(daysRange=3): CurrentWeekRange {
   const [start, setStart] = useState<string | null>(null);
   const [end, setEnd] = useState<string | null>(null);
 
-  function handleSetStart(isStart: boolean, date: string): void {
+  function handleSetRange(isStart: boolean, date: string): void {
     if (isStart) {
       setStart(date);
     } else {
@@ -22,13 +22,13 @@ export default function useCurrentWeekRange(): CurrentWeekRange {
     const dateTemplate = "YYYY-MM-DD";
     const currentDate = new Date();
     const today = dayjs(currentDate).format(dateTemplate);
-    const sevenDaysAgo = dayjs(currentDate)
-      .subtract(17, "day")
+    const daysAgo = dayjs(currentDate)
+      .subtract(daysRange, "day")
       .format(dateTemplate);
 
-    setStart(sevenDaysAgo);
+    setStart(daysAgo);
     setEnd(today);
-  }, []);
+  }, [daysRange]);
 
-  return {start, end, handleSetStart};
+  return {start, end, handleSetRange};
 }
