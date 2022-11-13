@@ -19,13 +19,13 @@ const App = () => {
             handleSetRange,
           }}
         >
-          <Row justify="center">
-            <Col span={12}>
+          <Row>
+            <Col span={24}>
               <RangeDate />
             </Col>
           </Row>
 
-          <Row>
+          <Row >
             <Col span={24}>
               <Measurements />
             </Col>
