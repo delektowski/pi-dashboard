@@ -21,7 +21,7 @@ const Measure = ({
     const data: Measurement[] = rangeMeasurements.map(
       (measurement: Measurement) => {
         const formatDate = dayjs(measurement.measurementDate).format(
-          "DD.MM.YY  HH:MM"
+          "DD.MM/HH:MM"
         );
         return { date: formatDate, [measureType]: measurement[measureType] };
       }
