@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Area } from "@ant-design/plots";
-import { Measurement } from "../../models/measurement.model";
+import { Measurement } from "../../../models/measurement.model";
 import dayjs from "dayjs";
 import { Divider } from "antd";
+import { ChartColorModel } from "../../../models/chart-color.model";
 
-const TemperatureMeasure = ({
+const Measure = ({
   rangeMeasurements,
+  measureType,
+  title,
+  chartColor,
 }: {
   rangeMeasurements: Measurement[];
+  measureType: string;
+  title: string;
+  chartColor: ChartColorModel;
 }) => {
   const [data, setData] = useState<Measurement[]>([]);
   useEffect(() => {
@@ -16,37 +23,42 @@ const TemperatureMeasure = ({
         const formatDate = dayjs(measurement.measurementDate).format(
           "DD.MM.YY  HH:MM"
         );
-        return { date: formatDate, temperature: measurement.temperature };
+        return { date: formatDate, [measureType]: measurement[measureType] };
       }
     );
 
     setData(data);
-  }, [rangeMeasurements]);
+  }, [rangeMeasurements, measureType]);
   const config = {
     data,
     height: 400,
     xField: "date",
-    yField: "temperature",
+    yField: measureType,
     xAxis: {
       range: [0, 0.98],
       tickCount: 10,
     },
     yAxis: {
       range: [0, 1],
-      tickCount: 18,
+      tickCount: 6,
+    },
+    meta: {
+      yField: {
+        range: [0.5, 0],
+      },
     },
     areaStyle: () => {
       return {
-        fill: "l(270) 0:#ffffff 0.5:#EC3953 1:#E60526",
+        fill: `l(270) 0:#ffffff 0.5:${chartColor.mid} 1:${chartColor.height}`,
       };
     },
-    color: "#ffa3b0",
+    color: `${chartColor.topLine}`,
   };
   return (
     <>
-      <Divider orientation="center">Temperature</Divider>
+      <Divider orientation="center">{title}</Divider>
       <Area {...config} />
     </>
   );
 };
-export default TemperatureMeasure;
+export default Measure;
