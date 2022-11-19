@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col, Grid, Row } from "antd";
+import { Col, Divider, Row } from "antd";
 import "./App.css";
 import Measurements from "./components/measurements/measurements";
 import RangeDate from "./components/rangeDate/rangeDate";
@@ -17,27 +17,26 @@ const App = () => {
           value={{
             start,
             end,
-            handleSetRange
+            handleSetRange,
           }}
         >
-          <Row justify="center" >
+          <Row justify="center">
             <Col span={8}>
               <MonitoringImg />
             </Col>
           </Row>
-          <Card>
-            <Row>
-              <Col span={24}>
-                <RangeDate />
-              </Col>
-            </Row>
+          <Divider></Divider>
+          <Row>
+            <Col span={24}>
+              <RangeDate />
+            </Col>
+          </Row>
 
-            <Row>
-              <Col span={24}>
-                <Measurements />
-              </Col>
-            </Row>
-          </Card>
+          <Row>
+            <Col span={24}>
+              <Measurements />
+            </Col>
+          </Row>
         </DateRangeContext.Provider>
       )}
     </div>
