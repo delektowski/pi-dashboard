@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Divider, Row } from "antd";
+import { Col, Divider, Grid, Row } from "antd";
 import "./App.css";
 import Measurements from "./components/measurements/measurements";
 import RangeDate from "./components/rangeDate/rangeDate";
@@ -9,6 +9,9 @@ import MonitoringImg from "./components/monitoringImg/monitoringImg";
 
 const App = () => {
   const { start, end, handleSetRange } = useDateRange();
+  const { useBreakpoint } = Grid;
+  const { xs } = useBreakpoint();
+
 
   return (
     <div className="container">
@@ -21,7 +24,7 @@ const App = () => {
           }}
         >
           <Row justify="center">
-            <Col span={8}>
+            <Col span={xs ? 24 : 8}>
               <MonitoringImg />
             </Col>
           </Row>
