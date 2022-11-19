@@ -7,7 +7,7 @@ import plPL from "antd/es/locale/pl_PL";
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_URL,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 const root = ReactDOM.createRoot(
@@ -15,11 +15,9 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <ConfigProvider locale={plPL}>
-        <App />
-      </ConfigProvider>
-    </ApolloProvider>
-  </React.StrictMode>
+  <ApolloProvider client={client}>
+    <ConfigProvider locale={plPL}>
+      <App />
+    </ConfigProvider>
+  </ApolloProvider>
 );

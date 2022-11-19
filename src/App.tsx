@@ -1,10 +1,11 @@
 import React from "react";
-import {Card, Col, Row} from "antd";
+import { Card, Col, Grid, Row } from "antd";
 import "./App.css";
 import Measurements from "./components/measurements/measurements";
 import RangeDate from "./components/rangeDate/rangeDate";
 import { DateRangeContext } from "./context/dateRangeContext";
 import useDateRange from "./hooks/useDateRange";
+import MonitoringImg from "./components/monitoringImg/monitoringImg";
 
 const App = () => {
   const { start, end, handleSetRange } = useDateRange();
@@ -16,9 +17,14 @@ const App = () => {
           value={{
             start,
             end,
-            handleSetRange,
+            handleSetRange
           }}
         >
+          <Row justify="center" >
+            <Col span={8}>
+              <MonitoringImg />
+            </Col>
+          </Row>
           <Card>
             <Row>
               <Col span={24}>
