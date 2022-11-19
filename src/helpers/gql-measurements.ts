@@ -21,3 +21,12 @@ export const GET_MEASUREMENTS_RANGE = gql`
     }
   }
 `;
+
+export const GET_LAST_PHOTO = gql`
+  query LastPhoto {
+      lastPhoto {
+          date
+          title
+      }
+  }
+`;
