@@ -26,7 +26,7 @@ const MonitoringPlayer: React.FC<Omit<DateHmsRange, "endDateHms">> = ({
 
   function handleMinute(isAdd: boolean) {
     isAdd
-      ? handleSetDateHmsRange(dayjs(startDateHms).subtract(1, "minute"))
+      ? handleSetDateHmsRange(dayjs(startDateHms).add(1, "minute"))
       : handleSetDateHmsRange(dayjs(startDateHms).subtract(1, "minute"));
   }
 
