@@ -5,6 +5,7 @@ export interface DateHmsRange {
   startDateHms: null | Dayjs;
   endDateHms: null | Dayjs;
   handleSetDateHmsRange: (date: Dayjs) => void;
+  handleReset: () => void;
 }
 
 export default function useDateHmsRange(): DateHmsRange {
@@ -17,5 +18,10 @@ export default function useDateHmsRange(): DateHmsRange {
     setEndDateHms(endDate);
   }
 
-  return { startDateHms, endDateHms, handleSetDateHmsRange };
+  function handleReset() {
+    setStartDateHms(dayjs());
+    setEndDateHms(null);
+  }
+
+  return { startDateHms, endDateHms, handleSetDateHmsRange, handleReset };
 }

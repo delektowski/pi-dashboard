@@ -1,15 +1,18 @@
 import React from "react";
 import { DateHmsRangeContext } from "../../context/dateHmsRangeContext";
-import { Col, Grid, Row } from "antd";
+import { Col, Divider, Grid, Row } from "antd";
 import RangeDateHms from "./rangeDateHms/rangeDateHms";
 import useDateHmsRange from "../../hooks/useDateHmsRange";
 import MonitoringOldImg from "./monitoringOldImg/monitoringOldImg";
 import MonitoringImg from "./monitoringImg/monitoringImg";
+import MonitoringPlayer from "./monitoringPlayer/monitoringPlayer";
 
 const Monitoring = () => {
   const { useBreakpoint } = Grid;
   const { xs } = useBreakpoint();
-  const { startDateHms, endDateHms, handleSetDateHmsRange } = useDateHmsRange();
+  const { startDateHms, endDateHms, handleSetDateHmsRange, handleReset } =
+    useDateHmsRange();
+
   return (
     <>
       <DateHmsRangeContext.Provider
@@ -23,6 +26,16 @@ const Monitoring = () => {
           <Col span={24}>
             <RangeDateHms />
           </Col>
+        </Row>
+        <Divider />
+        {endDateHms && (
+          <MonitoringPlayer
+            startDateHms={startDateHms}
+            handleSetDateHmsRange={handleSetDateHmsRange}
+            handleReset={handleReset}
+          />
+        )}
+        <Row justify={"center"} gutter={[16, 16]}>
           {endDateHms && (
             <Col span={xs ? 24 : 8}>
               <MonitoringOldImg />
