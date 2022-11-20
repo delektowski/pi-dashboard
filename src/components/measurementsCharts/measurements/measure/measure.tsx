@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Area } from "@ant-design/plots";
-import { Measurement } from "../../../models/measurement.model";
+import { Measurement } from "../../../../models/measurement.model";
 import dayjs from "dayjs";
 import { Divider } from "antd";
-import { ChartColorModel } from "../../../models/chart-color.model";
+import { ChartColorModel } from "../../../../models/chart-color.model";
 
 const Measure = ({
   rangeMeasurements,
@@ -31,7 +31,7 @@ const Measure = ({
   }, [rangeMeasurements, measureType]);
   const config = {
     data,
-    height: 350,
+    height: 340,
     xField: "date",
     yField: measureType,
     xAxis: {

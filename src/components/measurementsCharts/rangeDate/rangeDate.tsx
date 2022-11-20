@@ -1,7 +1,7 @@
 import { Col, Grid, Row, Typography } from "antd";
 import React, { useContext } from "react";
-import DatePicker from "../../helpers/datePickerDayJs";
-import { DateRangeContext } from "../../context/dateRangeContext";
+import DatePicker from "../../../helpers/datePickerDayJs";
+import { DateRangeContext } from "../../../context/dateRangeContext";
 import dayjs from "dayjs";
 
 const RangeDate = () => {
@@ -11,7 +11,7 @@ const RangeDate = () => {
   const dateTemplate = "YYYY-MM-DD";
   const dateRange = useContext(DateRangeContext);
   const onChange: any["onChange"] = (isStart: boolean, dateString: any) => {
-    dateRange.handleSetRange(
+    dateRange.handleSetDateRange(
       isStart,
       dayjs(dateString.$d).format(dateTemplate)
     );
@@ -24,7 +24,7 @@ const RangeDate = () => {
         </Col>
         <Col span={xs ? 9 : 2}>
           <DatePicker
-            value={dayjs(dateRange.start)}
+            value={dayjs(dateRange.startDate)}
             onChange={(e) => onChange(true, e)}
             placeholder={"From"}
           />
@@ -32,7 +32,7 @@ const RangeDate = () => {
         <Text mark>To</Text>
         <Col span={xs ? 9 : 2}>
           <DatePicker
-            value={dayjs(dateRange.end)}
+            value={dayjs(dateRange.endDate)}
             onChange={(e) => onChange(false, e)}
             placeholder={"To"}
           />

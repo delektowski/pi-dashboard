@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
-export interface CurrentWeekRange {
-  start: null | string;
-  end: null | string;
-  handleSetRange: (isStart: boolean, date: string) => void;
+export interface DateRange {
+  startDate: null | string;
+  endDate: null | string;
+  handleSetDateRange: (isStart: boolean, date: string) => void;
 }
-export default function useDateRange(daysRange=3): CurrentWeekRange {
-  const [start, setStart] = useState<string | null>(null);
-  const [end, setEnd] = useState<string | null>(null);
+export default function useDateRange(daysRange=3): DateRange {
+  const [startDate, setStartDate] = useState<string | null>(null);
+  const [endDate, setEndDate] = useState<string | null>(null);
 
-  function handleSetRange(isStart: boolean, date: string): void {
+  function handleSetDateRange(isStart: boolean, date: string): void {
     if (isStart) {
-      setStart(date);
+      setStartDate(date);
     } else {
-      setEnd(date);
+      setEndDate(date);
     }
   }
 
@@ -26,9 +26,9 @@ export default function useDateRange(daysRange=3): CurrentWeekRange {
       .subtract(daysRange, "day")
       .format(dateTemplate);
 
-    setStart(daysAgo);
-    setEnd(today);
+    setStartDate(daysAgo);
+    setEndDate(today);
   }, [daysRange]);
 
-  return {start, end, handleSetRange};
+  return {startDate, endDate, handleSetDateRange};
 }

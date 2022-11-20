@@ -1,8 +1,8 @@
 import React from "react";
 import { Typography } from "antd";
 import { useQuery } from "@apollo/client";
-import { GET_LAST_PHOTO } from "../../helpers/gql-measurements";
-import { LastPhotoModel } from "../../models/last-photo.model";
+import { GET_LAST_PHOTO } from "../../../helpers/gql-measurements";
+import { LastPhotoModel } from "../../../models/last-photo.model";
 import dayjs from "dayjs";
 import styles from "./Monitoring-img.module.css";
 
@@ -30,7 +30,7 @@ const MonitoringImg = () => {
           />
           <figcaption style={{ textAlign: "center" }}>
             <Text type="secondary">
-              {dayjs(data?.lastPhoto[0].date).format("YY-MM-DD / HH:mm:ss")}
+              {dayjs(data?.lastPhoto[0].date).format("DD-MM-YY / HH:mm:ss")}
             </Text>
           </figcaption>
         </figure>
