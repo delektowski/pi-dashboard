@@ -36,10 +36,10 @@ const MonitoringPlayer: React.FC<Omit<DateHmsRange, "endDateHms">> = ({
       : handleSetDateHmsRange(dayjs(startDateHms).subtract(1, "hour"));
   }
 
-  function handleDay(isAdd: boolean) {
+  function handleSeconds(isAdd: boolean) {
     isAdd
-      ? handleSetDateHmsRange(dayjs(startDateHms).add(1, "day"))
-      : handleSetDateHmsRange(dayjs(startDateHms).subtract(1, "day"));
+      ? handleSetDateHmsRange(dayjs(startDateHms).add(15, "second"))
+      : handleSetDateHmsRange(dayjs(startDateHms).subtract(15, "second"));
   }
 
   return (
@@ -48,25 +48,24 @@ const MonitoringPlayer: React.FC<Omit<DateHmsRange, "endDateHms">> = ({
         <Col>
           <FastBackwardOutlined
             style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
-            onClick={() => handleDay(false)}
-          />
-          <p style={{ margin: 0 }}>-1d</p>
-        </Col>
-        <Col>
-          <StepBackwardOutlined
-            style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
             onClick={() => handleHour(false)}
           />
           <p style={{ margin: 0 }}>-1h</p>
         </Col>
         <Col>
-          <CaretLeftOutlined
+          <StepBackwardOutlined
             style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
             onClick={() => handleMinute(false)}
           />
           <p style={{ margin: 0 }}>-1m</p>
         </Col>
-
+        <Col>
+          <CaretLeftOutlined
+            style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+            onClick={() => handleSeconds(false)}
+          />
+          <p style={{ margin: 0 }}>-15s</p>
+        </Col>
         <Col>
           <CloseCircleOutlined
             style={{
@@ -79,23 +78,23 @@ const MonitoringPlayer: React.FC<Omit<DateHmsRange, "endDateHms">> = ({
         <Col>
           <CaretRightOutlined
             style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+            onClick={() => handleSeconds(true)}
+          />
+          <p style={{ margin: 0 }}>+15s</p>
+        </Col>
+        <Col>
+          <StepForwardOutlined
+            style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
             onClick={() => handleMinute(true)}
           />
           <p style={{ margin: 0 }}>+1m</p>
         </Col>
         <Col>
-          <StepForwardOutlined
+          <FastForwardOutlined
             style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
             onClick={() => handleHour(true)}
           />
           <p style={{ margin: 0 }}>+1h</p>
-        </Col>
-        <Col>
-          <FastForwardOutlined
-            style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
-            onClick={() => handleDay(true)}
-          />
-          <p style={{ margin: 0 }}>+1d</p>
         </Col>
       </Row>
 

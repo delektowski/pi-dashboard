@@ -12,7 +12,7 @@ const { Text } = Typography;
 const MonitoringOldImg = () => {
   const dateHmsRange = useContext(DateHmsRangeContext);
 
-  const { error, data } = useQuery<{
+  const { loading, error, data } = useQuery<{
     oldPhotoFromRange: LastPhotoModel[];
   }>(GET_OLD_PHOTO_FROM_RANGE, {
     variables: {

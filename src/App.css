@@ -1,8 +1,9 @@
 @import "~antd/dist/antd.css";
 
-    .container {
-        padding-block-start: 1rem;
-        padding-block-end: 1rem;
-        padding-inline: 0.5rem;
-    }
+.container {
+    padding-block-start: 1rem;
+    padding-block-end: 1rem;
+    padding-inline: 0.5rem;
+
+}
 
