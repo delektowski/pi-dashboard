@@ -13,6 +13,7 @@ const MonitoringOldImg = () => {
   const dateHmsRange = useContext(DateHmsRangeContext);
 
   const [image, setImage] = useState<undefined | string>(undefined);
+  const [date, setDate] = useState<undefined | string>("");
   const [prevImage, setPrevImage] = useState<undefined | string>(undefined);
   const { error, data } = useQuery<{
     oldPhotoFromRange: LastPhotoModel[];
@@ -35,6 +36,7 @@ const MonitoringOldImg = () => {
       img.src = `${process.env.REACT_APP_URL}/img-${data?.oldPhotoFromRange[0].title}.jpg`;
       img.onload = () => {
         setPrevImage(img.src);
+        setDate(data?.oldPhotoFromRange[0].date)
       };
     }
   }, [data]);
@@ -54,7 +56,7 @@ const MonitoringOldImg = () => {
           />
           <figcaption style={{ textAlign: "center" }}>
             <Text italic>
-              {dayjs(data?.oldPhotoFromRange[0].date).format(
+              {dayjs(date).format(
                 "DD-MM-YY / HH:mm:ss"
               )}
             </Text>
