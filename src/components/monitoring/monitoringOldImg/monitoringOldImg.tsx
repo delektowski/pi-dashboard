@@ -49,7 +49,7 @@ const MonitoringOldImg = () => {
   return (
     <>
       {error && <p>Something went wrong</p>}
-      {(isOldPhoto(data) || prevImage) && (
+      {(isOldPhoto(data) || prevImage) ? (
         <figure className={styles.container}>
           <img
             className={styles.monitoringImg}
@@ -60,7 +60,7 @@ const MonitoringOldImg = () => {
             <Text italic>{dayjs(date).format("DD-MM-YY / HH:mm:ss")}</Text>
           </figcaption>
         </figure>
-      )}
+      ) : <p>No image...</p>}
     </>
   );
 };
