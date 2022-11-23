@@ -32,17 +32,19 @@ const MonitoringOldImg = () => {
 
   useEffect(() => {
     const img = new Image();
-    if (data) {
+    if (data?.oldPhotoFromRange.length && data?.oldPhotoFromRange.length > 0) {
       img.src = `${process.env.REACT_APP_URL}/img-${data?.oldPhotoFromRange[0].title}.jpg`;
       img.onload = () => {
         setPrevImage(img.src);
-        setDate(data?.oldPhotoFromRange[0].date)
+        setDate(data?.oldPhotoFromRange[0].date);
       };
     }
   }, [data]);
 
   useEffect(() => {
-    setImage(prevImage);
+    if (prevImage) {
+      setImage(prevImage);
+    }
   }, [prevImage]);
   return (
     <>
@@ -55,11 +57,7 @@ const MonitoringOldImg = () => {
             alt="my-logo"
           />
           <figcaption style={{ textAlign: "center" }}>
-            <Text italic>
-              {dayjs(date).format(
-                "DD-MM-YY / HH:mm:ss"
-              )}
-            </Text>
+            <Text italic>{dayjs(date).format("DD-MM-YY / HH:mm:ss")}</Text>
           </figcaption>
         </figure>
       )}

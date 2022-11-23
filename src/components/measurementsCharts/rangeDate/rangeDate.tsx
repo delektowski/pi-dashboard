@@ -18,10 +18,7 @@ const RangeDate = () => {
   };
   return (
     <>
-      <Row justify="center" align="middle">
-        <Col>
-          <Text mark>From</Text>
-        </Col>
+      <Row justify="center" align="middle" gutter={24}>
         <Col span={xs ? 9 : 2}>
           <DatePicker
             value={dayjs(dateRange.startDate)}
@@ -29,7 +26,7 @@ const RangeDate = () => {
             placeholder={"From"}
           />
         </Col>
-        <Text mark>To</Text>
+        <Text mark>Measurements</Text>
         <Col span={xs ? 9 : 2}>
           <DatePicker
             value={dayjs(dateRange.endDate)}

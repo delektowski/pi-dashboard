@@ -20,19 +20,18 @@ const RangeDateHms = () => {
   }
   return (
     <>
-      <Row justify="center" align="middle">
-        <Col>
-          <Text mark>Date</Text>
-        </Col>
-        <Col span={xs ? 9 : 2}>
+      <Row justify="center" align="middle" gutter={10}>
+        <Col span={xs ? 9 : undefined}>
           <DatePicker
             value={dateRange.startDateHms}
             onChange={onChange}
             placeholder={"From"}
           />
         </Col>
-        <Text mark>Time</Text>
-        <Col span={xs ? 9 : 2}>
+        <Col>
+          <Text mark>Image</Text>
+        </Col>
+        <Col span={xs ? 9 : undefined}>
           <DatePicker
             picker="time"
             value={dateRange.startDateHms}
