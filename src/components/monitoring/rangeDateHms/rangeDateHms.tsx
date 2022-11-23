@@ -1,4 +1,4 @@
-import { Col, Grid, Row, Typography } from "antd";
+import { Button, Col, Grid, Row, Typography } from "antd";
 import React, { useContext } from "react";
 import DatePicker from "../../../helpers/datePickerDayJs";
 import dayjs, { Dayjs } from "dayjs";
@@ -16,11 +16,13 @@ const RangeDateHms = () => {
   };
 
   const onPlayMonitoring: any["onClick"] = () => {
-    dateRange.handleSetDateHmsRange(dayjs(dateRange.startDateHms).subtract(1,'minute'));
-  }
+    dateRange.handleSetDateHmsRange(
+      dayjs(dateRange.startDateHms).subtract(1, "minute")
+    );
+  };
   return (
     <>
-      <Row justify="center" align="middle" gutter={10}>
+      <Row justify="center" align="middle" gutter={[10,10]}>
         <Col span={xs ? 9 : undefined}>
           <DatePicker
             value={dateRange.startDateHms}
@@ -39,9 +41,15 @@ const RangeDateHms = () => {
           />
         </Col>
         <Col>
-          <PlaySquareOutlined
-            style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+          <Button
             onClick={onPlayMonitoring}
+            type="primary"
+            shape="round"
+            icon={
+              <PlaySquareOutlined
+                style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+              />
+            }
           />
         </Col>
       </Row>
