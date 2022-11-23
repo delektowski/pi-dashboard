@@ -22,7 +22,7 @@ const Monitoring = () => {
           handleSetDateHmsRange,
         }}
       >
-        <Row justify="center" gutter={[16, 16]}>
+        <Row justify="center">
           <Col span={24}>
             <RangeDateHms />
           </Col>
