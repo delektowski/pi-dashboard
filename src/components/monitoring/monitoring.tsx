@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { DateHmsRangeContext } from "../../context/dateHmsRangeContext";
 import { Col, Divider, Grid, Row } from "antd";
 import RangeDateHms from "./rangeDateHms/rangeDateHms";
@@ -13,6 +13,7 @@ const Monitoring = () => {
   const { startDateHms, endDateHms, handleSetDateHmsRange, handleReset } =
     useDateHmsRange();
 
+  const [isOldImg, setIsOldImg] = useState(false);
   return (
     <>
       <DateHmsRangeContext.Provider
@@ -28,18 +29,28 @@ const Monitoring = () => {
           </Col>
         </Row>
         <Divider />
-        {endDateHms && (
+        {!xs && endDateHms && (
           <MonitoringPlayer
             startDateHms={startDateHms}
             handleSetDateHmsRange={handleSetDateHmsRange}
             handleReset={handleReset}
+            isOldImg={isOldImg}
           />
         )}
         <Row justify={"center"} gutter={[16, 16]}>
           {endDateHms && (
             <Col span={xs ? 24 : 8}>
-              <MonitoringOldImg />
+              <MonitoringOldImg setIsOldImg={setIsOldImg} />
             </Col>
+          )}
+          {xs && endDateHms && (
+            <MonitoringPlayer
+              startDateHms={startDateHms}
+              handleSetDateHmsRange={handleSetDateHmsRange}
+              handleReset={handleReset}
+              isOldImg={isOldImg}
+              setIsOldImg={setIsOldImg}
+            />
           )}
           <Col span={xs ? 24 : 8}>
             <MonitoringImg />

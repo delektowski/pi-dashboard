@@ -6,6 +6,8 @@ export interface DateHmsRange {
   endDateHms: null | Dayjs;
   handleSetDateHmsRange: (date: Dayjs) => void;
   handleReset: () => void;
+  isOldImg?: boolean;
+  setIsOldImg?: (a: boolean) => void;
 }
 
 export default function useDateHmsRange(): DateHmsRange {

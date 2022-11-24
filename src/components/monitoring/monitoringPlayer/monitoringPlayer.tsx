@@ -16,12 +16,17 @@ const MonitoringPlayer: React.FC<Omit<DateHmsRange, "endDateHms">> = ({
   startDateHms,
   handleSetDateHmsRange,
   handleReset,
+  isOldImg,
+  setIsOldImg,
 }) => {
   const { useBreakpoint } = Grid;
   const { xs } = useBreakpoint();
 
   function onReset() {
     handleReset();
+    if (setIsOldImg) {
+      setIsOldImg(false);
+    }
   }
 
   function handleMinute(isAdd: boolean) {
@@ -44,102 +49,103 @@ const MonitoringPlayer: React.FC<Omit<DateHmsRange, "endDateHms">> = ({
 
   return (
     <>
-      <Row justify="center" gutter={xs ? [22, 0] : [64, 0]}>
-        <Col>
-          <Button
-            type="primary"
-            onClick={() => handleHour(false)}
-            shape="circle"
-            icon={
-              <FastBackwardOutlined
-                style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
-              />
-            }
-          />
-          <p style={{ margin: 0 }}>-1h</p>
-        </Col>
-        <Col>
-          <Button
-            onClick={() => handleMinute(false)}
-            type="primary"
-            shape="circle"
-            icon={
-              <StepBackwardOutlined
-                style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
-              />
-            }
-          />
-          <p style={{ margin: 0 }}>-1m</p>
-        </Col>
-        <Col>
-          <Button
-            onClick={() => handleSeconds(false)}
-            type="primary"
-            shape="circle"
-            icon={
-              <CaretLeftOutlined
-                style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
-              />
-            }
-          />
-          <p style={{ margin: 0 }}>-15s</p>
-        </Col>
-        <Col>
-          <Button
-            type="primary"
-            danger
-            onClick={onReset}
-            shape="circle"
-            icon={
-              <CloseCircleOutlined
-                style={{
-                  fontSize: `${xs ? "1.4rem" : "1.2rem"}`,
-                }}
-              />
-            }
-          />
-        </Col>
-        <Col>
-          <Button
-            onClick={() => handleSeconds(true)}
-            type="primary"
-            shape="circle"
-            icon={
-              <CaretRightOutlined
-                style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
-              />
-            }
-          />
-          <p style={{ margin: 0 }}>+15s</p>
-        </Col>
-        <Col>
-          <Button
-            onClick={() => handleMinute(true)}
-            type="primary"
-            shape="circle"
-            icon={
-              <StepForwardOutlined
-                style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
-              />
-            }
-          />
-          <p style={{ margin: 0 }}>+1m</p>
-        </Col>
-        <Col>
-          <Button
-            onClick={() => handleHour(true)}
-            type="primary"
-            shape="circle"
-            icon={
-              <FastForwardOutlined
-                style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
-              />
-            }
-          />
-          <p style={{ margin: 0 }}>+1h</p>
-        </Col>
-      </Row>
-
+      {isOldImg && (
+        <Row justify="center" gutter={xs ? [22, 0] : [64, 0]}>
+          <Col>
+            <Button
+              type="primary"
+              onClick={() => handleHour(false)}
+              shape="circle"
+              icon={
+                <FastBackwardOutlined
+                  style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+                />
+              }
+            />
+            <p style={{ margin: 0 }}>-1h</p>
+          </Col>
+          <Col>
+            <Button
+              onClick={() => handleMinute(false)}
+              type="primary"
+              shape="circle"
+              icon={
+                <StepBackwardOutlined
+                  style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+                />
+              }
+            />
+            <p style={{ margin: 0 }}>-1m</p>
+          </Col>
+          <Col>
+            <Button
+              onClick={() => handleSeconds(false)}
+              type="primary"
+              shape="circle"
+              icon={
+                <CaretLeftOutlined
+                  style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+                />
+              }
+            />
+            <p style={{ margin: 0 }}>-15s</p>
+          </Col>
+          <Col>
+            <Button
+              type="primary"
+              danger
+              onClick={onReset}
+              shape="circle"
+              icon={
+                <CloseCircleOutlined
+                  style={{
+                    fontSize: `${xs ? "1.4rem" : "1.2rem"}`,
+                  }}
+                />
+              }
+            />
+          </Col>
+          <Col>
+            <Button
+              onClick={() => handleSeconds(true)}
+              type="primary"
+              shape="circle"
+              icon={
+                <CaretRightOutlined
+                  style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+                />
+              }
+            />
+            <p style={{ margin: 0 }}>+15s</p>
+          </Col>
+          <Col>
+            <Button
+              onClick={() => handleMinute(true)}
+              type="primary"
+              shape="circle"
+              icon={
+                <StepForwardOutlined
+                  style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+                />
+              }
+            />
+            <p style={{ margin: 0 }}>+1m</p>
+          </Col>
+          <Col>
+            <Button
+              onClick={() => handleHour(true)}
+              type="primary"
+              shape="circle"
+              icon={
+                <FastForwardOutlined
+                  style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+                />
+              }
+            />
+            <p style={{ margin: 0 }}>+1h</p>
+          </Col>
+        </Row>
+      )}
       <Divider />
     </>
   );

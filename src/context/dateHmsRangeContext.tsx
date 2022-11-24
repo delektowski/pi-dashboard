@@ -4,7 +4,8 @@ import {Dayjs} from "dayjs";
 interface DateHmsRangeInterface {
   startDateHms: Dayjs| null;
   endDateHms: Dayjs| null;
-  handleSetDateHmsRange: ((date: Dayjs) => void)
+  handleSetDateHmsRange: ((date: Dayjs) => void);
+
 
 }
 

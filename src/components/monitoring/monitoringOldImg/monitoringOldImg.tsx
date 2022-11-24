@@ -9,8 +9,10 @@ import { DateHmsRangeContext } from "../../../context/dateHmsRangeContext";
 
 const { Text } = Typography;
 
-const MonitoringOldImg = () => {
-  const dateHmsRange = useContext(DateHmsRangeContext);
+const MonitoringOldImg: React.FC<{ setIsOldImg: (a: boolean) => void }> = ({
+  setIsOldImg,
+}) => {
+  const { startDateHms, endDateHms } = useContext(DateHmsRangeContext);
 
   const [image, setImage] = useState<undefined | string>(undefined);
   const [date, setDate] = useState<undefined | string>("");
@@ -19,8 +21,8 @@ const MonitoringOldImg = () => {
     oldPhotoFromRange: LastPhotoModel[];
   }>(GET_OLD_PHOTO_FROM_RANGE, {
     variables: {
-      start: dateHmsRange.startDateHms,
-      end: dateHmsRange.endDateHms,
+      start: startDateHms,
+      end: endDateHms,
     },
   });
 
@@ -37,9 +39,10 @@ const MonitoringOldImg = () => {
       img.onload = () => {
         setPrevImage(img.src);
         setDate(data?.oldPhotoFromRange[0].date);
+        setIsOldImg(true);
       };
     }
-  }, [data]);
+  }, [data, setIsOldImg]);
 
   useEffect(() => {
     if (prevImage) {
@@ -49,7 +52,7 @@ const MonitoringOldImg = () => {
   return (
     <>
       {error && <p>Something went wrong</p>}
-      {(isOldPhoto(data) || prevImage) ? (
+      {isOldPhoto(data) || prevImage ? (
         <figure className={styles.container}>
           <img
             className={styles.monitoringImg}
@@ -60,7 +63,9 @@ const MonitoringOldImg = () => {
             <Text italic>{dayjs(date).format("DD-MM-YY / HH:mm:ss")}</Text>
           </figcaption>
         </figure>
-      ) : <p>No image...</p>}
+      ) : (
+        <p>No image...</p>
+      )}
     </>
   );
 };
