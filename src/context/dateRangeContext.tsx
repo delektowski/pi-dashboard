@@ -1,9 +1,10 @@
 import React from "react";
+import {Dayjs} from "dayjs";
 
 interface DateRangeInterface {
-  startDate: string | null;
-  endDate: string | null;
-  handleSetDateRange: (isStart: boolean, date: string) => void;
+  startDate: Dayjs | null;
+  endDate: Dayjs | null;
+  handleSetDateRange: (isStart: boolean, date: Dayjs) => void;
 }
 
 export const DateRangeContext = React.createContext({} as DateRangeInterface);

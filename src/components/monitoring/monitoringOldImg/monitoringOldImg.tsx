@@ -9,8 +9,10 @@ import { DateHmsRangeContext } from "../../../context/dateHmsRangeContext";
 
 const { Text } = Typography;
 
-const MonitoringOldImg: React.FC<{ setIsOldImg: (a: boolean) => void }> = ({
+const MonitoringOldImg = ({
   setIsOldImg,
+}: {
+  setIsOldImg: (a: boolean) => void;
 }) => {
   const { startDateHms, endDateHms } = useContext(DateHmsRangeContext);
 

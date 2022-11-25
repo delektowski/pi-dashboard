@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Col, Divider, Grid, Row } from "antd";
 import {
   CaretLeftOutlined,
@@ -11,19 +11,25 @@ import {
 } from "@ant-design/icons";
 import { DateHmsRange } from "../../../hooks/useDateHmsRange";
 import dayjs from "dayjs";
+import { DateHmsRangeContext } from "../../../context/dateHmsRangeContext";
 
-const MonitoringPlayer: React.FC<Omit<DateHmsRange, "endDateHms">> = ({
-  startDateHms,
-  handleSetDateHmsRange,
+const MonitoringPlayer = ({
   handleReset,
   isOldImg,
   setIsOldImg,
-}) => {
+}: Omit<
+  DateHmsRange,
+  "endDateHms" | "startDateHms" | "handleSetDateHmsRange"
+>) => {
   const { useBreakpoint } = Grid;
   const { xs } = useBreakpoint();
+  const { startDateHms, handleSetDateHmsRange, handleSetDateRange } =
+    useContext(DateHmsRangeContext);
 
   function onReset() {
     handleReset();
+    handleSetDateRange(true, dayjs());
+    handleSetDateRange(false, dayjs());
     if (setIsOldImg) {
       setIsOldImg(false);
     }
@@ -49,7 +55,7 @@ const MonitoringPlayer: React.FC<Omit<DateHmsRange, "endDateHms">> = ({
 
   return (
     <>
-      {isOldImg && (
+      {(isOldImg || !xs) && (
         <Row justify="center" gutter={xs ? [22, 0] : [64, 0]}>
           <Col>
             <Button

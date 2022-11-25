@@ -3,10 +3,17 @@ import { DateRangeContext } from "../../context/dateRangeContext";
 import { Col, Row } from "antd";
 import RangeDate from "./rangeDate/rangeDate";
 import Measurements from "./measurements/measurements";
-import useDateRange from "../../hooks/useDateRange";
+import { Dayjs } from "dayjs";
 
-const MeasurementsCharts = () => {
-  const { startDate, endDate, handleSetDateRange } = useDateRange();
+const MeasurementsCharts = ({
+  startDate,
+  endDate,
+  handleSetDateRange,
+}: {
+  startDate: Dayjs | null;
+  endDate: Dayjs | null;
+  handleSetDateRange: (isStart: boolean, date: Dayjs) => void;
+}) => {
   return (
     <>
       <DateRangeContext.Provider

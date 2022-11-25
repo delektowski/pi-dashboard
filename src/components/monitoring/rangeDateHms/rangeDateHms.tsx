@@ -10,22 +10,25 @@ const RangeDateHms = () => {
   const { xs } = useBreakpoint();
   const { Text } = Typography;
 
-  const dateRange = useContext(DateHmsRangeContext);
+  const { startDateHms, handleSetDateHmsRange, handleSetDateRange } =
+    useContext(DateHmsRangeContext);
   const onChange: any["onChange"] = (date: Dayjs) => {
-    dateRange.handleSetDateHmsRange(date);
+    handleSetDateHmsRange(date);
+    handleSetDateRange(true, date);
+    handleSetDateRange(false, date);
   };
 
   const onPlayMonitoring: any["onClick"] = () => {
-    dateRange.handleSetDateHmsRange(
-      dayjs(dateRange.startDateHms).subtract(1, "minute")
-    );
+    handleSetDateHmsRange(dayjs(startDateHms).subtract(1, "minute"));
+    handleSetDateRange(true, startDateHms as Dayjs);
+    handleSetDateRange(false, startDateHms as Dayjs);
   };
   return (
     <>
-      <Row justify="center" align="middle" gutter={[10,10]}>
+      <Row justify="center" align="middle" gutter={[10, 10]}>
         <Col span={xs ? 9 : undefined}>
           <DatePicker
-            value={dateRange.startDateHms}
+            value={startDateHms}
             onChange={onChange}
             placeholder={"From"}
           />
@@ -34,11 +37,7 @@ const RangeDateHms = () => {
           <Text mark>Image</Text>
         </Col>
         <Col span={xs ? 9 : undefined}>
-          <DatePicker
-            picker="time"
-            value={dateRange.startDateHms}
-            onChange={onChange}
-          />
+          <DatePicker picker="time" value={startDateHms} onChange={onChange} />
         </Col>
         <Col>
           <Button
