@@ -31,7 +31,7 @@ const Measure = ({
   }, [rangeMeasurements, measureType]);
   const config = {
     data,
-    height: 340,
+    height: 200,
     xField: "date",
     yField: measureType,
     xAxis: {
