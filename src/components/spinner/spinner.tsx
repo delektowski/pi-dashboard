@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../monitoring/monitoringImg/Monitoring-img.module.css";
+import styles from "./Spinner.module.css";
 import {Spin} from "antd";
 
 const SpinnerCentered = () => {
