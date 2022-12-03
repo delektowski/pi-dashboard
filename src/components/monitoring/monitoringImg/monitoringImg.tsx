@@ -5,6 +5,7 @@ import { GET_LAST_PHOTO } from "../../../helpers/gql-measurements";
 import { LastPhotoModel } from "../../../models/last-photo.model";
 import dayjs from "dayjs";
 import styles from "./Monitoring-img.module.css";
+import SpinnerCentered from "../../spinner/spinner";
 
 const { Text } = Typography;
 
@@ -18,9 +19,9 @@ const MonitoringImg = () => {
 
   return (
     <>
-      {error && <p>Something went wrong</p>}
+      {error && <p>{`Error! ${error.message}`}</p>}
       {loading ? (
-        <p>Loading...</p>
+        <SpinnerCentered />
       ) : (
         <figure className={styles.container}>
           <img

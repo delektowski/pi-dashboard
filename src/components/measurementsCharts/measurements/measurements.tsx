@@ -11,6 +11,7 @@ import {
   temperatureChartColor,
 } from "../../../helpers/charts-colors";
 import { Col, Grid, Row } from "antd";
+import SpinnerCentered from "../../spinner/spinner";
 
 const Measurements = (): JSX.Element => {
   const { useBreakpoint } = Grid;
@@ -23,11 +24,10 @@ const Measurements = (): JSX.Element => {
     variables: { start: dateRange.startDate, end: dateRange.endDate },
   });
 
-  if (loading) return <p>"Loading..."</p>;
-  if (error) return <p>{`Error! ${error.message}`}</p>;
-
   return (
     <>
+      {error && <p>{`Error! ${error.message}`}</p>}
+      {loading && <SpinnerCentered />}
       {data?.dateRangeMeasurements && (
         <Row justify="center">
           <Col span={xs ? 24 : 8}>

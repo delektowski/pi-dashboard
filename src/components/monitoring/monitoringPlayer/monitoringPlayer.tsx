@@ -30,7 +30,7 @@ const MonitoringPlayer = ({
     handleReset();
     handleSetDateRange(true, dayjs());
     handleSetDateRange(false, dayjs());
-    if (setIsOldImg) {
+    if (typeof setIsOldImg === "function") {
       setIsOldImg(false);
     }
   }

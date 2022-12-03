@@ -6,9 +6,13 @@ import useDateHmsRange from "../../hooks/useDateHmsRange";
 import MonitoringOldImg from "./monitoringOldImg/monitoringOldImg";
 import MonitoringImg from "./monitoringImg/monitoringImg";
 import MonitoringPlayer from "./monitoringPlayer/monitoringPlayer";
-import {Dayjs} from "dayjs";
+import { Dayjs } from "dayjs";
 
-const Monitoring = ({handleSetDateRange}: {handleSetDateRange: ((isStart:boolean, date: Dayjs) => void)} ) => {
+const Monitoring = ({
+  handleSetDateRange,
+}: {
+  handleSetDateRange: (isStart: boolean, date: Dayjs) => void;
+}) => {
   const { useBreakpoint } = Grid;
   const { xs } = useBreakpoint();
   const { startDateHms, endDateHms, handleSetDateHmsRange, handleReset } =
@@ -22,20 +26,17 @@ const Monitoring = ({handleSetDateRange}: {handleSetDateRange: ((isStart:boolean
           startDateHms,
           endDateHms,
           handleSetDateHmsRange,
-            handleSetDateRange
+          handleSetDateRange,
         }}
       >
         <Row justify="center">
           <Col span={24}>
-            <RangeDateHms />
+            <RangeDateHms setIsOldImg={setIsOldImg} />
           </Col>
         </Row>
         <Divider />
         {!xs && endDateHms && (
-          <MonitoringPlayer
-            handleReset={handleReset}
-            isOldImg={isOldImg}
-          />
+          <MonitoringPlayer handleReset={handleReset} isOldImg={isOldImg} setIsOldImg={setIsOldImg} />
         )}
         <Row justify={"center"} gutter={[16, 16]}>
           {endDateHms && (
@@ -50,9 +51,11 @@ const Monitoring = ({handleSetDateRange}: {handleSetDateRange: ((isStart:boolean
               setIsOldImg={setIsOldImg}
             />
           )}
-          <Col span={xs ? 24 : 8}>
-            <MonitoringImg />
-          </Col>
+          {!isOldImg && (
+            <Col span={xs ? 24 : 8}>
+              <MonitoringImg />
+            </Col>
+          )}
         </Row>
       </DateHmsRangeContext.Provider>
     </>

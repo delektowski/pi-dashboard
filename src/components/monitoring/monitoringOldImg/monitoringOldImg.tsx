@@ -6,20 +6,18 @@ import { LastPhotoModel } from "../../../models/last-photo.model";
 import dayjs from "dayjs";
 import styles from "./Monitoring-img.module.css";
 import { DateHmsRangeContext } from "../../../context/dateHmsRangeContext";
+import { SetIsOldImageModel } from "../../../models/set-is-old-image.model";
+import SpinnerCentered from "../../spinner/spinner";
 
 const { Text } = Typography;
 
-const MonitoringOldImg = ({
-  setIsOldImg,
-}: {
-  setIsOldImg: (a: boolean) => void;
-}) => {
+const MonitoringOldImg = ({ setIsOldImg }: SetIsOldImageModel) => {
   const { startDateHms, endDateHms } = useContext(DateHmsRangeContext);
 
   const [image, setImage] = useState<undefined | string>(undefined);
   const [date, setDate] = useState<undefined | string>("");
   const [prevImage, setPrevImage] = useState<undefined | string>(undefined);
-  const { error, data } = useQuery<{
+  const { loading, error, data } = useQuery<{
     oldPhotoFromRange: LastPhotoModel[];
   }>(GET_OLD_PHOTO_FROM_RANGE, {
     variables: {
@@ -41,7 +39,6 @@ const MonitoringOldImg = ({
       img.onload = () => {
         setPrevImage(img.src);
         setDate(data?.oldPhotoFromRange[0].date);
-        setIsOldImg(true);
       };
     }
   }, [data, setIsOldImg]);
@@ -53,7 +50,8 @@ const MonitoringOldImg = ({
   }, [prevImage]);
   return (
     <>
-      {error && <p>Something went wrong</p>}
+      {error && <p>{`Error! ${error.message}`}</p>}
+      {loading && !image && <SpinnerCentered />}
       {isOldPhoto(data) || prevImage ? (
         <figure className={styles.container}>
           <img
