@@ -33,16 +33,7 @@ const MonitoringOldImg = ({ setIsOldImg }: SetIsOldImageModel) => {
     },
   });
 
-  function getOlderPhoto() {
-    function setOlderDate(timeAmount: number, timeUnit: ManipulateType): Dayjs {
-      setMinutesToSubtract((prev) => prev + timeAmount);
-      return dayjs().subtract(minutesToSubtract, timeUnit);
-    }
 
-    handleSetDateHmsRange(setOlderDate(1, "minute"));
-    handleSetDateRange(true, setOlderDate(1, "minute"));
-    handleSetDateRange(false, setOlderDate(1, "minute"));
-  }
 
   function isOldPhoto(
     data: { oldPhotoFromRange: LastPhotoModel[] } | undefined
@@ -52,6 +43,16 @@ const MonitoringOldImg = ({ setIsOldImg }: SetIsOldImageModel) => {
 
   useEffect(() => {
     const img = new Image();
+    function getOlderPhoto() {
+      function setOlderDate(timeAmount: number, timeUnit: ManipulateType): Dayjs {
+        setMinutesToSubtract((prev) => prev + timeAmount);
+        return dayjs().subtract(minutesToSubtract, timeUnit);
+      }
+
+      handleSetDateHmsRange(setOlderDate(1, "minute"));
+      handleSetDateRange(true, setOlderDate(1, "minute"));
+      handleSetDateRange(false, setOlderDate(1, "minute"));
+    }
 
     if (data?.oldPhotoFromRange.length && data?.oldPhotoFromRange.length > 0) {
       img.src = `${process.env.REACT_APP_URL}/img-${data?.oldPhotoFromRange[0].title}.jpg`;
