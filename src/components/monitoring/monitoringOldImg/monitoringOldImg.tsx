@@ -33,8 +33,6 @@ const MonitoringOldImg = ({ setIsOldImg }: SetIsOldImageModel) => {
     },
   });
 
-
-
   function isOldPhoto(
     data: { oldPhotoFromRange: LastPhotoModel[] } | undefined
   ) {
@@ -43,15 +41,19 @@ const MonitoringOldImg = ({ setIsOldImg }: SetIsOldImageModel) => {
 
   useEffect(() => {
     const img = new Image();
+
     function getOlderPhoto() {
-      function setOlderDate(timeAmount: number, timeUnit: ManipulateType): Dayjs {
+      function setOlderDate(
+        timeAmount: number,
+        timeUnit: ManipulateType
+      ): Dayjs {
         setMinutesToSubtract((prev) => prev + timeAmount);
         return dayjs().subtract(minutesToSubtract, timeUnit);
       }
 
-      handleSetDateHmsRange(setOlderDate(1, "minute"));
-      handleSetDateRange(true, setOlderDate(1, "minute"));
-      handleSetDateRange(false, setOlderDate(1, "minute"));
+      handleSetDateHmsRange(setOlderDate(5, "second"));
+      handleSetDateRange(true, setOlderDate(5, "second"));
+      handleSetDateRange(false, setOlderDate(5, "second"));
     }
 
     if (data?.oldPhotoFromRange.length && data?.oldPhotoFromRange.length > 0) {
@@ -60,7 +62,8 @@ const MonitoringOldImg = ({ setIsOldImg }: SetIsOldImageModel) => {
         setPrevImage(img.src);
         setDate(data?.oldPhotoFromRange[0].date);
       };
-    } else {
+    }
+    if (!image) {
       getOlderPhoto();
     }
   }, [data, setIsOldImg]); // eslint-disable-line react-hooks/exhaustive-deps
