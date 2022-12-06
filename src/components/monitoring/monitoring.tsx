@@ -41,7 +41,7 @@ const Monitoring = ({
         <Row justify={"center"} gutter={[16, 16]}>
           {endDateHms && (
             <Col span={xs ? 24 : 8}>
-              <MonitoringOldImg setIsOldImg={setIsOldImg} />
+              <MonitoringOldImg  />
             </Col>
           )}
           {xs && endDateHms && (

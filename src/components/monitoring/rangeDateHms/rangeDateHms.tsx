@@ -14,6 +14,7 @@ const RangeDateHms = ({setIsOldImg}:SetIsOldImageModel) => {
   const { startDateHms, handleSetDateHmsRange, handleSetDateRange } =
     useContext(DateHmsRangeContext);
   const onChange: any["onChange"] = (date: Dayjs) => {
+
     handleSetDateHmsRange(date);
     handleSetDateRange(true, date);
     handleSetDateRange(false, date);
