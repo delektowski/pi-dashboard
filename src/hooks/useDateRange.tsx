@@ -7,7 +7,7 @@ export interface DateRange {
   handleSetDateRange: (isStart: boolean, date: Dayjs) => void;
 }
 
-export default function useDateRange(daysRange = 3): DateRange {
+export default function useDateRange(daysRange = 0): DateRange {
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
   const [endDate, setEndDate] = useState<Dayjs | null>(null);
 
@@ -21,7 +21,7 @@ export default function useDateRange(daysRange = 3): DateRange {
 
   useEffect(() => {
     const today = dayjs();
-    const daysAgo = dayjs().subtract(3, "day");
+    const daysAgo = dayjs().subtract(daysRange, "day");
 
     setStartDate(daysAgo);
     setEndDate(today);
