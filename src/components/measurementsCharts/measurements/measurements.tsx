@@ -36,6 +36,7 @@ const Measurements = (): JSX.Element => {
               measureType={MeasureTypeEnum.TEMPERATURE}
               title="Temperature"
               chartColor={temperatureChartColor}
+              tickCount={7}
             />
           </Col>
           <Col span={xs ? 24 : 8}>
@@ -44,6 +45,7 @@ const Measurements = (): JSX.Element => {
               measureType={MeasureTypeEnum.HUMIDITY}
               title="Humidity"
               chartColor={humidityChartColor}
+              tickCount={10}
             />
           </Col>
           <Col span={xs ? 24 : 8}>
@@ -52,6 +54,7 @@ const Measurements = (): JSX.Element => {
               measureType={MeasureTypeEnum.PRESSURE}
               title="Pressure"
               chartColor={pressureChartColor}
+              tickCount={10}
             />
           </Col>
         </Row>
