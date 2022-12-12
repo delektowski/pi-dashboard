@@ -11,11 +11,13 @@ const Measure = ({
   measureType,
   title,
   chartColor,
+                   tickCount
 }: {
   rangeMeasurements: Measurement[];
   measureType: string;
   title: string;
   chartColor: ChartColorModel;
+  tickCount: number
 }) => {
   const [data, setData] = useState<Measurement[]>([]);
   const [min, max] = useMinMax(data, measureType);
@@ -29,7 +31,7 @@ const Measure = ({
         return {
           date: formatDate,
           [measureType]: Number(
-            (measurement[measureType] as number).toFixed(1)
+            (measurement[measureType] as number).toFixed(0)
           ),
         };
       }
@@ -47,7 +49,7 @@ const Measure = ({
     },
     yAxis: {
       range: [0, 1],
-      tickCount: 6,
+      tickCount,
       min,
       max,
     },
