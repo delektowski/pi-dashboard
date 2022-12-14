@@ -1,9 +1,14 @@
 .container {
-    width: 100%;
+  width: 100%;
 }
 
 .monitoringImg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding-block-end: 0.2rem;
+}
+
+.imgCaption {
+  text-align: center;
 }

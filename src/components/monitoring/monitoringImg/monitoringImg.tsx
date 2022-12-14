@@ -3,19 +3,20 @@ import { Typography } from "antd";
 import { useQuery } from "@apollo/client";
 import { GET_LAST_PHOTO } from "../../../helpers/gql-measurements";
 import { LastPhotoModel } from "../../../models/last-photo.model";
-import dayjs from "dayjs";
 import styles from "./Monitoring-img.module.css";
 import SpinnerCentered from "../../spinner/spinner";
+import useDateTimeFormat from "../../../hooks/useDateTimeFormat";
 
 const { Text } = Typography;
 
 const MonitoringImg = () => {
   const { loading, error, data } = useQuery<{
-    lastPhoto: LastPhotoModel[];
+    ["lastPhoto"]: LastPhotoModel[];
   }>(GET_LAST_PHOTO, {
     fetchPolicy: "network-only",
     pollInterval: 10000,
   });
+  const { dateTimeFormat } = useDateTimeFormat(data, undefined);
 
   return (
     <>
@@ -29,10 +30,8 @@ const MonitoringImg = () => {
             src={`${process.env.REACT_APP_URL}/img-${data?.lastPhoto[0].title}.jpg`}
             alt="my-logo"
           />
-          <figcaption style={{ textAlign: "center" }}>
-            <Text type="secondary">
-              {dayjs(data?.lastPhoto[0].date).format("DD-MM-YY / HH:mm:ss")}
-            </Text>
+          <figcaption className={styles.imgCaption}>
+            <Text type="secondary">{dateTimeFormat.map((item) => item)}</Text>
           </figcaption>
         </figure>
       )}

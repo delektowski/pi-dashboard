@@ -1,3 +1,3 @@
 export interface SetIsOldImageModel {
-    setIsOldImg: (a: boolean) => void;
+  setIsOldImg: (a: boolean) => void;
 }

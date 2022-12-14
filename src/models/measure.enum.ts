@@ -1,4 +1,4 @@
-export enum Measure {
+export enum MeasureEnum {
   HUMIDITY = "humidity",
   MEASUREMENT_DATE = "measurementDate",
   PRESSURE = "pressure",

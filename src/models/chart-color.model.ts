@@ -1,5 +1,5 @@
 export interface ChartColorModel {
-    mid: string;
-    height: string;
-    topLine: string;
+  mid: string;
+  height: string;
+  topLine: string;
 }

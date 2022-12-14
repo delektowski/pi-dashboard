@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Area } from "@ant-design/plots";
+import { Card, Divider, Grid } from "antd";
 import { Measurement } from "../../../../models/measurement.model";
 import dayjs from "dayjs";
-import { Divider } from "antd";
 import { ChartColorModel } from "../../../../models/chart-color.model";
 import useMinMax from "../../../../hooks/useMinMax";
 
@@ -11,22 +11,24 @@ const Measure = ({
   measureType,
   title,
   chartColor,
-                   tickCount
+  tickCount,
 }: {
   rangeMeasurements: Measurement[];
   measureType: string;
   title: string;
   chartColor: ChartColorModel;
-  tickCount: number
+  tickCount: number;
 }) => {
   const [data, setData] = useState<Measurement[]>([]);
-  const [min, max] = useMinMax(data, measureType);
+  const { min, max } = useMinMax(data, measureType);
+  const { useBreakpoint } = Grid;
+  const { xs } = useBreakpoint();
 
   useEffect(() => {
     const data: Measurement[] = rangeMeasurements.map(
       (measurement: Measurement) => {
         const formatDate = dayjs(measurement.measurementDate).format(
-          "DD.MM/HH:MM"
+          "DD.MM.YY/HH:MM"
         );
         return {
           date: formatDate,
@@ -44,14 +46,26 @@ const Measure = ({
     xField: "date",
     yField: measureType,
     xAxis: {
-      range: [0, 0.98],
-      tickCount: 10,
+      range: [0.04, 1],
+      tickCount: 8,
+      label: {
+        formatter: (val: string) => {
+          console.log("val", val);
+
+          return val.replace("/", "\n");
+        },
+      },
     },
     yAxis: {
       range: [0, 1],
       tickCount,
       min,
       max,
+      label: {
+        formatter: (val: string) => {
+          return Number(val).toFixed(1);
+        },
+      },
     },
     meta: {
       yField: {
@@ -68,8 +82,20 @@ const Measure = ({
   };
   return (
     <>
-      <Divider orientation="center">{title}</Divider>
-      <Area {...config} />
+      {xs ? (
+        <>
+          <Divider orientation="center">{title}</Divider>
+          <Area {...config} />
+        </>
+      ) : (
+        <Card
+          title={title}
+          bordered={false}
+          headStyle={{ textAlign: "center" }}
+        >
+          <Area {...config} />
+        </Card>
+      )}
     </>
   );
 };

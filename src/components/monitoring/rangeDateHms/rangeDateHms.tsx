@@ -4,9 +4,9 @@ import DatePicker from "../../../helpers/datePickerDayJs";
 import dayjs, { Dayjs } from "dayjs";
 import { DateHmsRangeContext } from "../../../context/dateHmsRangeContext";
 import { PlaySquareOutlined } from "@ant-design/icons";
-import {SetIsOldImageModel} from "../../../models/set-is-old-image.model";
+import { SetIsOldImageModel } from "../../../models/set-is-old-image.model";
 
-const RangeDateHms = ({setIsOldImg}:SetIsOldImageModel) => {
+const RangeDateHms = ({ setIsOldImg }: SetIsOldImageModel) => {
   const { useBreakpoint } = Grid;
   const { xs } = useBreakpoint();
   const { Text } = Typography;
@@ -14,7 +14,6 @@ const RangeDateHms = ({setIsOldImg}:SetIsOldImageModel) => {
   const { startDateHms, handleSetDateHmsRange, handleSetDateRange } =
     useContext(DateHmsRangeContext);
   const onChange: any["onChange"] = (date: Dayjs) => {
-
     handleSetDateHmsRange(date);
     handleSetDateRange(true, date);
     handleSetDateRange(false, date);
@@ -24,7 +23,7 @@ const RangeDateHms = ({setIsOldImg}:SetIsOldImageModel) => {
     handleSetDateHmsRange(dayjs(startDateHms).subtract(1, "minute"));
     handleSetDateRange(true, startDateHms as Dayjs);
     handleSetDateRange(false, startDateHms as Dayjs);
-    setIsOldImg(true)
+    setIsOldImg(true);
   };
   return (
     <>
@@ -34,6 +33,7 @@ const RangeDateHms = ({setIsOldImg}:SetIsOldImageModel) => {
             value={startDateHms}
             onChange={onChange}
             placeholder={"From"}
+            format={"DD.MM.YY"}
           />
         </Col>
         <Col>

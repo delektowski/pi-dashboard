@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, Col, Divider, Grid, Row } from "antd";
+import { Button, Col, Grid, Row } from "antd";
 import {
   CaretLeftOutlined,
   CaretRightOutlined,
@@ -152,7 +152,6 @@ const MonitoringPlayer = ({
           </Col>
         </Row>
       )}
-      <Divider />
     </>
   );
 };

@@ -21,14 +21,16 @@ const RangeDate = () => {
             value={dayjs(startDate)}
             onChange={(e) => onChange(true, e)}
             placeholder={"From"}
+            format={"DD.MM.YY"}
           />
         </Col>
-        <Text mark>Measurements</Text>
+        <Text mark>Measures</Text>
         <Col span={xs ? 9 : 2}>
           <DatePicker
             value={dayjs(endDate)}
             onChange={(e) => onChange(false, e)}
             placeholder={"To"}
+            format={"DD.MM.YY"}
           />
         </Col>
       </Row>

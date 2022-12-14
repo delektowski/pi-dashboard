@@ -1,5 +1,5 @@
 export enum MeasureTypeEnum {
-  TEMPERATURE="temperature",
+  TEMPERATURE = "temperature",
   HUMIDITY = "humidity",
-  PRESSURE = "pressure"
+  PRESSURE = "pressure",
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { DateRangeContext } from "../../context/dateRangeContext";
-import { Col, Row } from "antd";
+import { Card, Col, Grid, Row } from "antd";
 import RangeDate from "./rangeDate/rangeDate";
 import Measurements from "./measurements/measurements";
 import { Dayjs } from "dayjs";
@@ -14,6 +14,9 @@ const MeasurementsCharts = ({
   endDate: Dayjs | null;
   handleSetDateRange: (isStart: boolean, date: Dayjs) => void;
 }) => {
+  const { useBreakpoint } = Grid;
+  const { xs } = useBreakpoint();
+
   return (
     <>
       <DateRangeContext.Provider
@@ -25,7 +28,13 @@ const MeasurementsCharts = ({
       >
         <Row>
           <Col span={24}>
-            <RangeDate />
+            {xs ? (
+              <Card bordered={false}>
+                <RangeDate />
+              </Card>
+            ) : (
+              <RangeDate />
+            )}
           </Col>
         </Row>
         <Row>

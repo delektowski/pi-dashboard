@@ -7,7 +7,7 @@ import plPL from "antd/es/locale/pl_PL";
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_URL,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 const root = ReactDOM.createRoot(

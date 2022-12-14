@@ -3,10 +3,10 @@ import { Typography } from "antd";
 import { useQuery } from "@apollo/client";
 import { GET_OLD_PHOTO_FROM_RANGE } from "../../../helpers/gql-measurements";
 import { LastPhotoModel } from "../../../models/last-photo.model";
-import dayjs from "dayjs";
 import styles from "./Monitoring-img.module.css";
 import { DateHmsRangeContext } from "../../../context/dateHmsRangeContext";
 import SpinnerCentered from "../../spinner/spinner";
+import useDateTimeFormat from "../../../hooks/useDateTimeFormat";
 
 const { Text } = Typography;
 
@@ -25,6 +25,7 @@ const MonitoringOldImg = () => {
       end: endDateHms,
     },
   });
+  const { dateTimeFormat } = useDateTimeFormat(undefined, date);
 
   function isOldPhoto(
     data: { oldPhotoFromRange: LastPhotoModel[] } | undefined
@@ -60,8 +61,10 @@ const MonitoringOldImg = () => {
             src={image !== prevImage ? image : prevImage}
             alt=""
           />
-          <figcaption style={{ textAlign: "center" }}>
-            <Text italic>{dayjs(date).format("DD-MM-YY / HH:mm:ss")}</Text>
+          <figcaption className={styles.imgCaption}>
+            <Text type="secondary" style={{ color: "#1791FF" }}>
+              {dateTimeFormat.map((item) => item)}
+            </Text>
           </figcaption>
         </figure>
       )}

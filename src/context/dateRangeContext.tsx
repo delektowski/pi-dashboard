@@ -1,5 +1,5 @@
 import React from "react";
-import {Dayjs} from "dayjs";
+import { Dayjs } from "dayjs";
 
 interface DateRangeInterface {
   startDate: Dayjs | null;

@@ -1,4 +1,4 @@
 export interface LastPhotoModel {
-    date: string;
-    title: string;
+  date: string;
+  title: string;
 }

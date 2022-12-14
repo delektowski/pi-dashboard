@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DateHmsRangeContext } from "../../context/dateHmsRangeContext";
-import { Col, Divider, Grid, Row } from "antd";
+import { Card, Col, Grid, Row } from "antd";
 import RangeDateHms from "./rangeDateHms/rangeDateHms";
 import useDateHmsRange from "../../hooks/useDateHmsRange";
 import MonitoringOldImg from "./monitoringOldImg/monitoringOldImg";
@@ -31,17 +31,29 @@ const Monitoring = ({
       >
         <Row justify="center">
           <Col span={24}>
-            <RangeDateHms setIsOldImg={setIsOldImg} />
+            {xs ? (
+              <Card bordered={false}>
+                <RangeDateHms setIsOldImg={setIsOldImg} />
+              </Card>
+            ) : (
+              <RangeDateHms setIsOldImg={setIsOldImg} />
+            )}
           </Col>
         </Row>
-        <Divider />
+
         {!xs && endDateHms && (
-          <MonitoringPlayer handleReset={handleReset} isOldImg={isOldImg} setIsOldImg={setIsOldImg} />
+          <Card bordered={false}>
+            <MonitoringPlayer
+              handleReset={handleReset}
+              isOldImg={isOldImg}
+              setIsOldImg={setIsOldImg}
+            />
+          </Card>
         )}
-        <Row justify={"center"} gutter={[16, 16]}>
+        <Row justify={"center"} gutter={[16, 0]}>
           {endDateHms && (
             <Col span={xs ? 24 : 8}>
-              <MonitoringOldImg  />
+              <MonitoringOldImg />
             </Col>
           )}
           {xs && endDateHms && (
@@ -53,7 +65,13 @@ const Monitoring = ({
           )}
           {!isOldImg && (
             <Col span={xs ? 24 : 8}>
-              <MonitoringImg />
+              {xs ? (
+                <MonitoringImg />
+              ) : (
+                <Card bordered={false}>
+                  <MonitoringImg />
+                </Card>
+              )}
             </Col>
           )}
         </Row>

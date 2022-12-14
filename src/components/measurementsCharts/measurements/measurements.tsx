@@ -23,7 +23,6 @@ const Measurements = (): JSX.Element => {
   }>(GET_MEASUREMENTS_RANGE, {
     variables: { start: dateRange.startDate, end: dateRange.endDate },
   });
-
   return (
     <>
       {error && <p>{`Error! ${error.message}`}</p>}
