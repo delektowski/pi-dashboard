@@ -53,7 +53,7 @@ const Measurements = (): JSX.Element => {
               measureType={MeasureTypeEnum.PRESSURE}
               title="Pressure"
               chartColor={pressureChartColor}
-              tickCount={10}
+              tickCount={6}
             />
           </Col>
         </Row>
