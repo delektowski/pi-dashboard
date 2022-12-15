@@ -11,8 +11,12 @@ const RangeDateHms = ({ setIsOldImg }: SetIsOldImageModel) => {
   const { xs } = useBreakpoint();
   const { Text } = Typography;
 
-  const { startDateHms, handleSetDateHmsRange, handleSetDateRange } =
-    useContext(DateHmsRangeContext);
+  const {
+    startDateHms,
+    endDateHms,
+    handleSetDateHmsRange,
+    handleSetDateRange,
+  } = useContext(DateHmsRangeContext);
   const onChange: any["onChange"] = (date: Dayjs) => {
     handleSetDateHmsRange(date);
     handleSetDateRange(true, date);
@@ -42,18 +46,20 @@ const RangeDateHms = ({ setIsOldImg }: SetIsOldImageModel) => {
         <Col span={xs ? 9 : undefined}>
           <DatePicker picker="time" value={startDateHms} onChange={onChange} />
         </Col>
-        <Col>
-          <Button
-            onClick={onPlayMonitoring}
-            type="primary"
-            shape="round"
-            icon={
-              <PlaySquareOutlined
-                style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
-              />
-            }
-          />
-        </Col>
+        {!endDateHms && (
+          <Col>
+            <Button
+              onClick={onPlayMonitoring}
+              type="primary"
+              shape="round"
+              icon={
+                <PlaySquareOutlined
+                  style={{ fontSize: `${xs ? "1.4rem" : "1.2rem"}` }}
+                />
+              }
+            />
+          </Col>
+        )}
       </Row>
     </>
   );

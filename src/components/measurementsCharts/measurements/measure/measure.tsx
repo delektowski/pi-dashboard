@@ -61,7 +61,7 @@ const Measure = ({
       max,
       label: {
         formatter: (val: string) => {
-          const space = '     '
+          const space = "     ";
           return `${Number(val).toFixed(1)}${space}`;
         },
       },
