@@ -46,12 +46,10 @@ const Measure = ({
     xField: "date",
     yField: measureType,
     xAxis: {
-      range: [0.04, 1],
-      tickCount: 8,
+      range: [0, 0.99],
+      tickCount: 10,
       label: {
         formatter: (val: string) => {
-          console.log("val", val);
-
           return val.replace("/", "\n");
         },
       },
@@ -63,7 +61,8 @@ const Measure = ({
       max,
       label: {
         formatter: (val: string) => {
-          return Number(val).toFixed(1);
+          const space = '     '
+          return `${Number(val).toFixed(1)}${space}`;
         },
       },
     },

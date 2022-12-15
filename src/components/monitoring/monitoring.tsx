@@ -31,13 +31,9 @@ const Monitoring = ({
       >
         <Row justify="center">
           <Col span={24}>
-            {xs ? (
               <Card bordered={false}>
-                <RangeDateHms setIsOldImg={setIsOldImg} />
+                  <RangeDateHms setIsOldImg={setIsOldImg} />
               </Card>
-            ) : (
-              <RangeDateHms setIsOldImg={setIsOldImg} />
-            )}
           </Col>
         </Row>
 
@@ -68,9 +64,9 @@ const Monitoring = ({
               {xs ? (
                 <MonitoringImg />
               ) : (
-                <Card bordered={false}>
+
                   <MonitoringImg />
-                </Card>
+               
               )}
             </Col>
           )}

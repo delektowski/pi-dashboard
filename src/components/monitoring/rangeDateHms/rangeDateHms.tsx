@@ -37,7 +37,7 @@ const RangeDateHms = ({ setIsOldImg }: SetIsOldImageModel) => {
           />
         </Col>
         <Col>
-          <Text mark>Image</Text>
+          <Text mark>Images</Text>
         </Col>
         <Col span={xs ? 9 : undefined}>
           <DatePicker picker="time" value={startDateHms} onChange={onChange} />
