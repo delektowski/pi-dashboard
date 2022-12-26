@@ -7,7 +7,7 @@ export default function useDateTimeFormat(
   dateOldImg: string | undefined
 ) {
   const date = dateOldImg
-    ? dayjs(dateOldImg).format("YY.MM.DD / HH:mm:ss")
+    ? dayjs(dateOldImg).format("DD.MM.YY / HH:mm:ss")
     : dayjs(data?.lastPhoto[0].date).format("DD.MM.YY / HH:mm:ss");
   const formatDate = date.split("/");
   return {
