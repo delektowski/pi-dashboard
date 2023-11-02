@@ -13,15 +13,23 @@ import {
 import { Col, Grid, Row } from "antd";
 import SpinnerCentered from "../../spinner/spinner";
 
-const Measurements = (): JSX.Element => {
+interface MeasurementsProps {
+  measurementTable: string;
+}
+
+const Measurements = ({ measurementTable }: MeasurementsProps): JSX.Element => {
   const { useBreakpoint } = Grid;
   const { xs } = useBreakpoint();
 
   const dateRange = useContext(DateRangeContext);
   const { loading, error, data } = useQuery<{
-    dateRangeMeasurements: Measurement[];
+    [key: string]: Measurement[];
   }>(GET_MEASUREMENTS_RANGE, {
-    variables: { start: dateRange.startDate, end: dateRange.endDate },
+    variables: {
+      start: dateRange.startDate,
+      end: dateRange.endDate,
+      measurementTable,
+    },
   });
   return (
     <>

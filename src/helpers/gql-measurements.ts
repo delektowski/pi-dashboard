@@ -12,8 +12,16 @@ export const GET_MEASUREMENTS = gql`
 `;
 
 export const GET_MEASUREMENTS_RANGE = gql`
-  query AllMeasurements($start: String, $end: String) {
-    dateRangeMeasurements(start: $start, end: $end) {
+  query AllMeasurements(
+    $start: String
+    $end: String
+    $measurementTable: String
+  ) {
+    dateRangeMeasurements(
+      start: $start
+      end: $end
+      measurementTable: $measurementTable
+    ) {
       temperature
       pressure
       humidity
