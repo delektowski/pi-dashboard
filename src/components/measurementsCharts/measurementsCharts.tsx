@@ -1,6 +1,6 @@
 import React from "react";
 import { DateRangeContext } from "../../context/dateRangeContext";
-import {Card, Col, Divider, Grid, Row} from "antd";
+import {Card, Col, Divider, Grid, Row, Typography} from "antd";
 import RangeDate from "./rangeDate/rangeDate";
 import Measurements from "./measurements/measurements";
 import { Dayjs } from "dayjs";
@@ -16,6 +16,7 @@ const MeasurementsCharts = ({
 }) => {
   const { useBreakpoint } = Grid;
   const { xs } = useBreakpoint();
+    const { Text } = Typography;
 
   return (
     <>
@@ -40,9 +41,9 @@ const MeasurementsCharts = ({
 
         <Row >
           <Col span={24}>
-              <Divider orientation="center">First floor</Divider>
+              <Divider orientation="center"><Text mark>First floor</Text></Divider>
             <Measurements measurementTable={"measurements"} />
-              <Divider orientation="center">Ground floor</Divider>
+              <Divider orientation="center"><Text mark>Ground floor</Text></Divider>
             <Measurements measurementTable={"measurements1"} />
           </Col>
         </Row>
