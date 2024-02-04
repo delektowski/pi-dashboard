@@ -29,6 +29,20 @@ export const GET_MEASUREMENTS_RANGE = gql`
     }
   }
 `;
+export const GET_EXTERNAL_TEMP_RANGE = gql`
+  query DateRangeExternalTemp(
+    $start: String
+    $end: String
+  ) {
+    dateRangeExternalTemp(
+      start: $start
+      end: $end
+    ) {
+      temperature
+      measurementDate
+    }
+  }
+`;
 
 export const GET_LAST_PHOTO = gql`
   query LastPhoto {

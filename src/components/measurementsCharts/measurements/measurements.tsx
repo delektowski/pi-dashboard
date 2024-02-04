@@ -12,6 +12,7 @@ import {
 } from "../../../helpers/charts-colors";
 import { Col, Grid, Row } from "antd";
 import SpinnerCentered from "../../spinner/spinner";
+import { Tables } from "../../../models/tables-enum";
 
 interface MeasurementsProps {
   measurementTable: string;
@@ -31,6 +32,7 @@ const Measurements = ({ measurementTable }: MeasurementsProps): JSX.Element => {
       measurementTable,
     },
   });
+
   return (
     <>
       {error && <p>{`Error! ${error.message}`}</p>}
@@ -55,15 +57,17 @@ const Measurements = ({ measurementTable }: MeasurementsProps): JSX.Element => {
               tickCount={10}
             />
           </Col>
-          <Col span={xs ? 24 : 8}>
-            <Measure
-              rangeMeasurements={data.dateRangeMeasurements}
-              measureType={MeasureTypeEnum.PRESSURE}
-              title="Pressure"
-              chartColor={pressureChartColor}
-              tickCount={6}
-            />
-          </Col>
+          {measurementTable === Tables.MEASUREMENTS && (
+            <Col span={xs ? 24 : 8}>
+              <Measure
+                rangeMeasurements={data.dateRangeMeasurements}
+                measureType={MeasureTypeEnum.PRESSURE}
+                title="Pressure"
+                chartColor={pressureChartColor}
+                tickCount={6}
+              />
+            </Col>
+          )}
         </Row>
       )}
     </>
