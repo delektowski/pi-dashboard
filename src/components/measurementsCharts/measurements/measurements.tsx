@@ -7,12 +7,10 @@ import Measure from "./measure/measure";
 import { MeasureTypeEnum } from "../../../models/measure-type.enum";
 import {
   humidityChartColor,
-  pressureChartColor,
   temperatureChartColor,
 } from "../../../helpers/charts-colors";
 import { Col, Grid, Row } from "antd";
 import SpinnerCentered from "../../spinner/spinner";
-import { Tables } from "../../../models/tables-enum";
 
 interface MeasurementsProps {
   measurementTable: string;
@@ -57,17 +55,6 @@ const Measurements = ({ measurementTable }: MeasurementsProps): JSX.Element => {
               tickCount={10}
             />
           </Col>
-          {measurementTable === Tables.MEASUREMENTS && (
-            <Col span={xs ? 24 : 8}>
-              <Measure
-                rangeMeasurements={data.dateRangeMeasurements}
-                measureType={MeasureTypeEnum.PRESSURE}
-                title="Pressure"
-                chartColor={pressureChartColor}
-                tickCount={6}
-              />
-            </Col>
-          )}
         </Row>
       )}
     </>

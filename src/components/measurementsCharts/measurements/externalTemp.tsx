@@ -1,11 +1,17 @@
 import { useQuery } from "@apollo/client";
-import { GET_EXTERNAL_TEMP_RANGE } from "../../../helpers/gql-measurements";
+import {
+  GET_EXTERNAL_TEMP_RANGE,
+  GET_MEASUREMENTS_RANGE,
+} from "../../../helpers/gql-measurements";
 import { Measurement } from "../../../models/measurement.model";
 import React, { useContext } from "react";
 import { DateRangeContext } from "../../../context/dateRangeContext";
 import Measure from "./measure/measure";
 import { MeasureTypeEnum } from "../../../models/measure-type.enum";
-import { temperatureChartColor } from "../../../helpers/charts-colors";
+import {
+  pressureChartColor,
+  temperatureChartColor,
+} from "../../../helpers/charts-colors";
 import { Col, Grid, Row } from "antd";
 import SpinnerCentered from "../../spinner/spinner";
 
@@ -14,7 +20,11 @@ const ExternalTemp = (): JSX.Element => {
   const { xs } = useBreakpoint();
 
   const dateRange = useContext(DateRangeContext);
-  const { loading, error, data } = useQuery<{
+  const {
+    loading: loadingExternal,
+    error: errorExternal,
+    data: dataExternal,
+  } = useQuery<{
     [key: string]: Measurement[];
   }>(GET_EXTERNAL_TEMP_RANGE, {
     variables: {
@@ -23,23 +33,50 @@ const ExternalTemp = (): JSX.Element => {
     },
   });
 
+  const {
+    loading: loadingMeasurements,
+    error: errorMeasurements,
+    data: dataMeasurements,
+  } = useQuery<{
+    [key: string]: Measurement[];
+  }>(GET_MEASUREMENTS_RANGE, {
+    variables: {
+      start: dateRange.startDate,
+      end: dateRange.endDate,
+      measurementTable: "measurements1",
+    },
+  });
+
   return (
     <>
-      {error && <p>{`Error! ${error.message}`}</p>}
-      {loading && <SpinnerCentered />}
-      {data?.dateRangeExternalTemp && (
-        <Row justify="center">
+      <Row justify="center">
+        {errorExternal && <p>{`Error! ${errorExternal.message}`}</p>}
+        {loadingExternal && <SpinnerCentered />}
+        {dataExternal?.dateRangeExternalTemp && (
           <Col span={xs ? 24 : 8}>
             <Measure
-              rangeMeasurements={data.dateRangeExternalTemp}
+              rangeMeasurements={dataExternal.dateRangeExternalTemp}
               measureType={MeasureTypeEnum.TEMPERATURE}
               title="Temperature"
               chartColor={temperatureChartColor}
               tickCount={7}
             />
           </Col>
-        </Row>
-      )}
+        )}
+        {errorMeasurements && <p>{`Error! ${errorMeasurements.message}`}</p>}
+        {loadingMeasurements && <SpinnerCentered />}
+        {dataMeasurements?.dateRangeMeasurements && (
+          <Col span={xs ? 24 : 8}>
+            <Measure
+              rangeMeasurements={dataMeasurements.dateRangeMeasurements}
+              measureType={MeasureTypeEnum.PRESSURE}
+              title="Pressure"
+              chartColor={pressureChartColor}
+              tickCount={7}
+            />
+          </Col>
+        )}
+      </Row>
     </>
   );
 };
