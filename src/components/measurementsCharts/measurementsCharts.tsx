@@ -51,7 +51,7 @@ const MeasurementsCharts = ({
             </Divider>
             <Measurements measurementTable={"measurements1"} />
             <Divider orientation="center">
-              <Text mark>Temperature and pressure outside</Text>
+              <Text mark>Outside</Text>
             </Divider>
             <ExternalTemp />
           </Col>
