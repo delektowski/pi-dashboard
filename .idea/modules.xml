@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/antd-demo-ts.iml" filepath="$PROJECT_DIR$/.idea/antd-demo-ts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../peek-pi-server/.idea/peek-pi-server.iml" filepath="$PROJECT_DIR$/../peek-pi-server/.idea/peek-pi-server.iml" />
     </modules>
   </component>
 </project>
