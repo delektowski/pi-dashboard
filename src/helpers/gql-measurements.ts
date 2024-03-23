@@ -43,6 +43,14 @@ export const GET_EXTERNAL_TEMP_RANGE = gql`
     }
   }
 `;
+export const DATE_RANGE_FLOOR_BOILER_TEMPS = gql`
+query DateRangeFloorBoilerTemps($start: String, $end: String) {
+  dateRangeFloorBoilerTemps(start: $start, end: $end) {
+    measurementDate
+    temperature1
+    temperature3
+  }
+}`;
 
 export const GET_LAST_PHOTO = gql`
   query LastPhoto {

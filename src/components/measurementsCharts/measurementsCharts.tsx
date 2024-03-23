@@ -5,6 +5,8 @@ import RangeDate from "./rangeDate/rangeDate";
 import Measurements from "./measurements/measurements";
 import { Dayjs } from "dayjs";
 import ExternalTemp from "./measurements/externalTemp";
+import BoilerTopTemp from "./measurements/boilerTopTemp";
+import BoilerBottomTemp from "./measurements/boilerBottomTemp";
 
 const MeasurementsCharts = ({
   startDate,
@@ -54,6 +56,14 @@ const MeasurementsCharts = ({
               <Text mark>Outside</Text>
             </Divider>
             <ExternalTemp />
+            <Divider orientation="center">
+              <Text mark>Boiler top</Text>
+            </Divider>
+            <BoilerTopTemp />
+            <Divider orientation="center">
+              <Text mark>Boiler bottom</Text>
+            </Divider>
+            <BoilerBottomTemp />
           </Col>
         </Row>
       </DateRangeContext.Provider>
