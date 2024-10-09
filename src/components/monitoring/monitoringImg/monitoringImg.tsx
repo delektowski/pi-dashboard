@@ -18,16 +18,17 @@ const MonitoringImg = () => {
   });
   const { dateTimeFormat } = useDateTimeFormat(data, undefined);
 
+  const lastPhotoTitle = data?.lastPhoto[0]?.title || ""
   return (
     <>
       {error && <p>{`Error! ${error.message}`}</p>}
       {loading ? (
         <SpinnerCentered />
-      ) : (
+      ) :  (
         <figure className={styles.container}>
           <img
             className={styles.monitoringImg}
-            src={`${process.env.REACT_APP_URL}/img-${data?.lastPhoto[0].title}.jpg`}
+            src={`${process.env.REACT_APP_URL}/img-${lastPhotoTitle}.jpg`}
             alt="my-logo"
           />
           <figcaption className={styles.imgCaption}>
